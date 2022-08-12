@@ -1,12 +1,11 @@
 import requests
 import os
 from dotenv import load_dotenv
-import asyncio
 import telegram
 import time
 
 
-async def main():
+def main():
     load_dotenv()
 
     tg_bot_token = os.getenv('TOKEN_TG_BOT')
@@ -45,8 +44,7 @@ async def main():
                 lesson_url = result_work['lesson_url']
                 link_on_work = f'Поробности можно посмотреть по ссылке - {lesson_url}'
                 message_text = f'{check_text} \n{lesson_title} \n{status_text} \n\n{link_on_work}'
-                async with bot:
-                    await bot.send_message(text=f'{message_text}', chat_id=chat_id)
+                bot.send_message(text=f'{message_text}', chat_id=chat_id)
         except requests.exceptions.ConnectionError:
             print('Соединение разорвано!')
             print('Повторный запрос...')
@@ -57,4 +55,4 @@ async def main():
 
 
 if __name__ == '__main__':
-    asyncio.run(main())
+    main()
