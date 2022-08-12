@@ -26,7 +26,7 @@ python3 check_work.py
 Доступны переменные:
 - `TOKEN_DEVMAN_API` — token ученика devman (можно узнать [здесь](https://dvmn.org/api/docs/)).
 - `TOKEN_TG_BOT` — token телеграмм бота (получается у @BotFather при регистрации бота). 
-- `CHAT_ID` — id чата в который присылать уведомления (можно узнать написав @userinfobot).
+- `TG_CHAT_ID` — id чата в который присылать уведомления (можно узнать написав @userinfobot).
 
 ## Цели проекта
 

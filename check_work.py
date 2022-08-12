@@ -16,7 +16,7 @@ async def main():
     load_dotenv()
 
     token_tg_bot = os.getenv('TOKEN_TG_BOT')
-    chat_id = os.getenv('CHAT_ID')
+    chat_id = os.getenv('TG_CHAT_ID')
 
     bot = telegram.Bot(token_tg_bot)
 
