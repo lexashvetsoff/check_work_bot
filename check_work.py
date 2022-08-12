@@ -27,14 +27,14 @@ async def main():
         try:
             response = requests.get(url_long_polling, headers=headers, params=payload)
             response.raise_for_status()
-            answer = response.json()
+            check_result = response.json()
 
-            if answer['status'] == 'timeout':
-                payload['timestamp'] = answer['timestamp_to_request']
+            if check_result['status'] == 'timeout':
+                payload['timestamp'] = check_result['timestamp_to_request']
             else:
-                payload['timestamp'] = answer['last_attempt_timestamp']
+                payload['timestamp'] = check_result['last_attempt_timestamp']
 
-                result_work = answer['new_attempts'][0]
+                result_work = check_result['new_attempts'][0]
                 check_text = 'Преподаватель проверил работу!'
                 lesson_title = result_work['lesson_title']
                 if result_work['is_negative']:
