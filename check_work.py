@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 import asyncio
 import telegram
+import time
 
 
 async def main():
@@ -49,6 +50,7 @@ async def main():
         except requests.exceptions.ConnectionError:
             print('Соединение разорвано!')
             print('Повторный запрос...')
+            time.sleep(30)
         except requests.exceptions.ReadTimeout:
             print('Что то пошло не так!')
             print('Повторный запрос...')
