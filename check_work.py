@@ -25,7 +25,7 @@ async def main():
     while True:
 
         try:
-            response = requests.get(url_long_polling, headers=headers, params=payload)
+            response = requests.get(url_long_polling, headers=headers, params=payload, timeout=90)
             response.raise_for_status()
             check_result = response.json()
 
