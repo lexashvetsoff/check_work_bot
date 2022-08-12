@@ -15,16 +15,16 @@ def fetch_devman(url, headers, params):
 async def main():
     load_dotenv()
 
-    token_tg_bot = os.getenv('TOKEN_TG_BOT')
+    tg_bot_token = os.getenv('TOKEN_TG_BOT')
     chat_id = os.getenv('TG_CHAT_ID')
 
-    bot = telegram.Bot(token_tg_bot)
+    bot = telegram.Bot(tg_bot_token)
 
-    token_dvm = os.getenv('TOKEN_DEVMAN_API')
+    devman_token = os.getenv('TOKEN_DEVMAN_API')
     url_long_polling = 'https://dvmn.org/api/long_polling/'
 
     headers = {
-        'Authorization': f'Token {token_dvm}'
+        'Authorization': f'Token {devman_token}'
     }
 
     payload = {}
