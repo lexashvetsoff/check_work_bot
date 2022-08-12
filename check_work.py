@@ -5,13 +5,6 @@ import asyncio
 import telegram
 
 
-def fetch_devman(url, headers, params):
-    response = requests.get(url, headers=headers, params=params)
-    response.raise_for_status()
-
-    return response.json()
-
-
 async def main():
     load_dotenv()
 
@@ -32,7 +25,9 @@ async def main():
     while True:
 
         try:
-            answer = fetch_devman(url_long_polling, headers, payload)
+            response = requests.get(url_long_polling, headers=headers, params=payload)
+            response.raise_for_status()
+            answer = response.json()
 
             if answer['status'] == 'timeout':
                 payload['timestamp'] = answer['timestamp_to_request']
