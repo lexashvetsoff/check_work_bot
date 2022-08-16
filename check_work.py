@@ -50,9 +50,7 @@ def main():
             print('Повторный запрос...')
             time.sleep(30)
         except requests.exceptions.ReadTimeout:
-            print('Что то пошло не так!')
-            time.sleep(90)
-            print('Повторный запрос...')
+            pass
 
 
 if __name__ == '__main__':
