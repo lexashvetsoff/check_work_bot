@@ -8,8 +8,8 @@ import time
 def main():
     load_dotenv()
 
-    tg_bot_token = os.getenv('TOKEN_TG_BOT')
-    chat_id = os.getenv('TG_CHAT_ID')
+    tg_bot_token = os.environ('TOKEN_TG_BOT')
+    chat_id = os.environ('TG_CHAT_ID')
 
     bot = telegram.Bot(tg_bot_token)
 
