@@ -3,10 +3,13 @@ import os
 from dotenv import load_dotenv
 import telegram
 import time
+import logging
 
 
 def main():
     load_dotenv()
+
+    logging.warning('Бот запущен!')
 
     tg_bot_token = os.environ['TOKEN_TG_BOT']
     chat_id = os.environ['TG_CHAT_ID']
