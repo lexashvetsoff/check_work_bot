@@ -6,15 +6,31 @@ import time
 import logging
 
 
+class TelegramLogsHandler(logging.Handler):
+
+    def __init__(self, tg_bot, chat_id):
+        super().__init__()
+        self.chat_id = chat_id
+        self.tg_bot = tg_bot
+    
+    def emit(self, record):
+        log_entry = self.format(record)
+        self.tg_bot.end_message(chat_id=self.chat_id, text=log_entry)
+
+
 def main():
     load_dotenv()
-
-    logging.warning('Бот запущен!')
 
     tg_bot_token = os.environ['TOKEN_TG_BOT']
     chat_id = os.environ['TG_CHAT_ID']
 
     bot = telegram.Bot(tg_bot_token)
+
+    logger = logging.getLogger('Logger')
+    logger.setLevel(logging.WARNING)
+    logger.addHandler(TelegramLogsHandler(bot, chat_id))
+
+    logger.warning('Бот запущен!')
 
     devman_token = os.environ['TOKEN_DEVMAN_API']
     url_long_polling = 'https://dvmn.org/api/long_polling/'
@@ -49,8 +65,8 @@ def main():
                 message_text = f'{check_text} \n{lesson_title} \n{status_text} \n\n{link_on_work}'
                 bot.send_message(text=f'{message_text}', chat_id=chat_id)
         except requests.exceptions.ConnectionError:
-            print('Соединение разорвано!')
-            print('Повторный запрос...')
+            logger.warning('Соединение разорвано!')
+            logger.warning('Повторный запрос...')
             time.sleep(30)
         except requests.exceptions.ReadTimeout:
             pass
