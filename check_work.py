@@ -65,11 +65,14 @@ def main():
                 message_text = f'{check_text} \n{lesson_title} \n{status_text} \n\n{link_on_work}'
                 bot.send_message(text=f'{message_text}', chat_id=chat_id)
         except requests.exceptions.ConnectionError:
+            logger.exception()
             logger.warning('Соединение разорвано!')
             logger.warning('Повторный запрос...')
             time.sleep(30)
         except requests.exceptions.ReadTimeout:
             pass
+        except Exception:
+            logger.exception()
 
 
 if __name__ == '__main__':
