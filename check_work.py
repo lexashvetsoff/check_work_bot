@@ -8,12 +8,12 @@ import time
 def main():
     load_dotenv()
 
-    tg_bot_token = os.environ('TOKEN_TG_BOT')
-    chat_id = os.environ('TG_CHAT_ID')
+    tg_bot_token = os.environ['TOKEN_TG_BOT']
+    chat_id = os.environ['TG_CHAT_ID']
 
     bot = telegram.Bot(tg_bot_token)
 
-    devman_token = os.getenv('TOKEN_DEVMAN_API')
+    devman_token = os.environ['TOKEN_DEVMAN_API']
     url_long_polling = 'https://dvmn.org/api/long_polling/'
 
     headers = {
